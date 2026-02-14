@@ -6,7 +6,7 @@
     <title>Will You Be Mine? 💕</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -88,6 +88,50 @@
             animation: fall linear infinite;
         }
 
+        /* Flying Bees Animation */
+        .bee {
+            position: absolute;
+            font-size: 35px;
+            opacity: 0.9;
+            animation: flyBee linear infinite;
+        }
+
+        @keyframes flyBee {
+            0% {
+                transform: translateX(-100px) translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            90% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateX(100vw) translateY(-50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Sparkle Stars Animation */
+        .sparkle {
+            position: absolute;
+            font-size: 25px;
+            opacity: 0;
+            animation: sparkleShine 3s ease-in-out infinite;
+        }
+
+        @keyframes sparkleShine {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5) rotate(180deg);
+            }
+        }
+
         @keyframes fall {
             0% {
                 transform: translateY(-100px) rotate(0deg);
@@ -139,6 +183,26 @@
         .rose-emoji:nth-child(36) { left: 85%; animation-duration: 15s; animation-delay: 5s; }
         .rose-emoji:nth-child(37) { left: 15%; animation-duration: 18s; animation-delay: 2.5s; }
         .rose-emoji:nth-child(38) { left: 90%; animation-duration: 16s; animation-delay: 4.5s; }
+
+        /* Flying Bees Positioning */
+        .bee:nth-child(39) { top: 15%; animation-duration: 20s; animation-delay: 0s; }
+        .bee:nth-child(40) { top: 35%; animation-duration: 25s; animation-delay: 5s; }
+        .bee:nth-child(41) { top: 55%; animation-duration: 22s; animation-delay: 10s; }
+        .bee:nth-child(42) { top: 75%; animation-duration: 24s; animation-delay: 3s; }
+        .bee:nth-child(43) { top: 25%; animation-duration: 23s; animation-delay: 8s; }
+        .bee:nth-child(44) { top: 65%; animation-duration: 21s; animation-delay: 12s; }
+
+        /* Sparkle Stars Positioning */
+        .sparkle:nth-child(45) { left: 10%; top: 20%; animation-delay: 0s; }
+        .sparkle:nth-child(46) { left: 25%; top: 40%; animation-delay: 0.5s; }
+        .sparkle:nth-child(47) { left: 40%; top: 15%; animation-delay: 1s; }
+        .sparkle:nth-child(48) { left: 55%; top: 60%; animation-delay: 1.5s; }
+        .sparkle:nth-child(49) { left: 70%; top: 30%; animation-delay: 2s; }
+        .sparkle:nth-child(50) { left: 85%; top: 50%; animation-delay: 2.5s; }
+        .sparkle:nth-child(51) { left: 15%; top: 70%; animation-delay: 0.8s; }
+        .sparkle:nth-child(52) { left: 60%; top: 80%; animation-delay: 1.8s; }
+        .sparkle:nth-child(53) { left: 30%; top: 55%; animation-delay: 1.2s; }
+        .sparkle:nth-child(54) { left: 80%; top: 25%; animation-delay: 2.2s; }
 
         /* Decorative Corner Flowers */
         .corner-flowers {
@@ -214,79 +278,225 @@
             }
         }
 
-        /* Elegant Card */
+        /* Modern Romantic Card with Glassmorphism */
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 30px;
-            padding: 40px;
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.85) 0%,
+                rgba(255, 249, 196, 0.75) 50%,
+                rgba(255, 255, 255, 0.85) 100%);
+            border-radius: 40px;
+            padding: 50px;
             box-shadow:
-                0 20px 60px rgba(212, 175, 55, 0.3),
-                inset 0 0 0 3px #D4AF37,
-                inset 0 0 0 6px rgba(255, 255, 255, 0.5);
+                0 8px 32px 0 rgba(229, 115, 115, 0.2),
+                0 15px 60px 0 rgba(255, 182, 193, 0.3),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
             position: relative;
-            backdrop-filter: blur(10px);
-        }
-
-        .card::before,
-        .card::after {
-            content: '✿';
-            position: absolute;
-            font-size: 2rem;
-            color: #D4AF37;
-            opacity: 0.6;
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
         }
 
         .card::before {
-            top: 20px;
-            left: 20px;
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle,
+                rgba(255, 192, 203, 0.15) 0%,
+                transparent 70%);
+            animation: shimmer 8s ease-in-out infinite;
+            pointer-events: none;
         }
 
+        @keyframes shimmer {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(10%, 10%) rotate(180deg);
+                opacity: 0.6;
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 12px 40px 0 rgba(229, 115, 115, 0.25),
+                0 20px 70px 0 rgba(255, 182, 193, 0.4),
+                inset 0 1px 0 0 rgba(255, 255, 255, 1);
+        }
+
+        /* Bee & Sparkle Card Decorations */
         .card::after {
-            bottom: 20px;
-            right: 20px;
+            content: '🐝';
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 2.5rem;
+            opacity: 0.2;
+            animation: float 3s ease-in-out infinite;
         }
 
-        /* Typography */
+        #section2 .card::after {
+            content: '✨';
+            left: 30px;
+            right: auto;
+            animation: sparkleFloat 2.5s ease-in-out infinite;
+        }
+
+        #section3 .card::after {
+            content: '🐝✨';
+            font-size: 2rem;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+                opacity: 0.2;
+            }
+            50% {
+                transform: translateY(-10px) scale(1.2);
+                opacity: 0.4;
+            }
+        }
+
+        /* Modern Typography */
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: #E57373;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.3);
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #E57373 0%, #FF6B9D 50%, #E57373 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .quote {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.8rem;
-            color: #D4AF37;
-            margin: 30px 0;
-            line-height: 1.6;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.4rem;
+            color: #8B4789;
+            margin: 30px auto;
+            line-height: 1.9;
             font-style: italic;
+            font-weight: 400;
+            max-width: 600px;
+            padding: 25px 35px;
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.6) 0%,
+                rgba(255, 228, 225, 0.5) 100%);
+            border-left: 4px solid #E57373;
+            border-radius: 15px;
+            box-shadow:
+                0 5px 20px rgba(139, 71, 137, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            position: relative;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .quote::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: #E57373;
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            line-height: 1;
+        }
+
+        .quote::after {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: #E57373;
+            opacity: 0.3;
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            line-height: 1;
         }
 
         .question {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: #333;
-            margin: 30px 0;
+            font-size: 2.2rem;
+            color: #2C2C2C;
+            margin: 35px 0;
             font-weight: 600;
+            line-height: 1.4;
+            animation: fadeIn 1s ease-out 0.5s both;
         }
 
         .name-highlight {
-            color: #E57373;
+            background: linear-gradient(135deg, #E57373 0%, #FF6B9D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 700;
-            text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.2);
+            font-size: 1.1em;
+            position: relative;
+            display: inline-block;
         }
 
-        /* GIF Display */
+        .name-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FF6B9D, transparent);
+            opacity: 0.5;
+        }
+
+        /* Modern GIF Display */
         .gif-container {
-            margin: 30px 0;
-            border-radius: 20px;
+            margin: 35px 0;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
+            box-shadow:
+                0 15px 45px rgba(255, 107, 157, 0.3),
+                0 5px 15px rgba(229, 115, 115, 0.2);
+            max-width: 420px;
             margin-left: auto;
             margin-right: auto;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        .gif-container:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 20px 55px rgba(255, 107, 157, 0.4),
+                0 8px 20px rgba(229, 115, 115, 0.3);
         }
 
         .gif-container img {
@@ -295,42 +505,72 @@
             display: block;
         }
 
-        /* Photo Gallery */
+        /* Modern Photo Gallery */
         .photo-gallery {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             flex-wrap: wrap;
-            margin: 30px 0;
+            margin: 35px 0;
         }
 
         .photo-frame {
-            width: 150px;
-            height: 150px;
-            border: 5px solid #FFF9C4;
-            border-radius: 15px;
+            width: 160px;
+            height: 160px;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            border-radius: 25px;
             box-shadow:
-                0 5px 15px rgba(0, 0, 0, 0.2),
-                inset 0 0 0 2px #D4AF37;
+                0 10px 30px rgba(255, 182, 193, 0.4),
+                0 5px 15px rgba(255, 107, 157, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.6);
             overflow: hidden;
-            transform: rotate(-2deg);
-            transition: all 0.3s ease;
-            background: white;
+            transform: rotate(-3deg);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, #FFF9C4 0%, #FFFFFF 100%);
+            position: relative;
+        }
+
+        .photo-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg,
+                rgba(255, 107, 157, 0.1) 0%,
+                transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .photo-frame:nth-child(even) {
-            transform: rotate(2deg);
+            transform: rotate(3deg);
         }
 
         .photo-frame:hover {
-            transform: scale(1.1) rotate(0deg);
+            transform: scale(1.15) rotate(0deg) translateY(-8px);
             z-index: 10;
+            box-shadow:
+                0 20px 50px rgba(255, 182, 193, 0.5),
+                0 10px 25px rgba(255, 107, 157, 0.3);
+        }
+
+        .photo-frame:hover::before {
+            opacity: 1;
         }
 
         .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .photo-frame:hover img {
+            transform: scale(1.1);
         }
 
         /* Video Container */
@@ -366,39 +606,71 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.4rem;
             font-weight: 700;
-            padding: 18px 50px;
+            padding: 20px 55px;
             border: none;
-            border-radius: 50px;
+            border-radius: 60px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            min-width: 150px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 160px;
             position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-yes {
-            background: linear-gradient(135deg, #FFF9C4 0%, #FFD54F 100%);
-            color: #333;
-            border: 3px solid #D4AF37;
+            background: linear-gradient(135deg, #FFE082 0%, #FFD54F 50%, #FFC107 100%);
+            color: #2C2C2C;
+            box-shadow:
+                0 8px 25px rgba(255, 193, 7, 0.4),
+                0 3px 10px rgba(255, 193, 7, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         .btn-yes:hover {
-            transform: scale(1.1);
+            transform: translateY(-3px) scale(1.05);
             box-shadow:
-                0 8px 25px rgba(212, 175, 55, 0.5),
-                0 0 30px rgba(255, 215, 0, 0.6);
-            background: linear-gradient(135deg, #FFD54F 0%, #FFF9C4 100%);
+                0 12px 35px rgba(255, 193, 7, 0.5),
+                0 5px 15px rgba(255, 193, 7, 0.4),
+                0 0 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-yes:active {
+            transform: translateY(-1px) scale(1.02);
         }
 
         .btn-no {
-            background: linear-gradient(135deg, #E57373 0%, #EF5350 100%);
+            background: linear-gradient(135deg, #FF6B9D 0%, #E57373 50%, #EF5350 100%);
             color: white;
-            border: 3px solid #C62828;
+            box-shadow:
+                0 8px 25px rgba(229, 115, 115, 0.4),
+                0 3px 10px rgba(229, 115, 115, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
         }
 
         .btn-no:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
+            box-shadow:
+                0 10px 30px rgba(229, 115, 115, 0.5),
+                0 0 30px rgba(255, 107, 157, 0.3);
         }
 
         /* NO Button Tooltip */
@@ -437,29 +709,55 @@
             border-top: 8px solid rgba(229, 115, 115, 0.95);
         }
 
-        /* Success Message */
+        /* Modern Success Message */
         .success-message {
-            background: linear-gradient(135deg, #FFF9C4 0%, #FFE5EC 100%);
-            border: 4px solid #D4AF37;
-            border-radius: 25px;
-            padding: 40px;
-            margin: 30px 0;
+            background: linear-gradient(135deg,
+                rgba(255, 249, 196, 0.9) 0%,
+                rgba(255, 229, 236, 0.9) 50%,
+                rgba(255, 255, 255, 0.9) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 35px;
+            padding: 45px;
+            margin: 35px 0;
             box-shadow:
-                0 15px 40px rgba(212, 175, 55, 0.4),
-                inset 0 0 0 2px rgba(255, 255, 255, 0.8);
+                0 15px 50px rgba(255, 107, 157, 0.3),
+                0 8px 25px rgba(229, 115, 115, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-message::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle,
+                rgba(255, 192, 203, 0.2) 0%,
+                transparent 70%);
+            animation: shimmer 6s ease-in-out infinite;
         }
 
         .success-message p {
             font-size: 1.5rem;
-            line-height: 1.8;
-            color: #333;
-            margin: 15px 0;
+            line-height: 1.9;
+            color: #2C2C2C;
+            margin: 18px 0;
+            position: relative;
+            z-index: 1;
         }
 
         .success-message .highlight {
-            color: #E57373;
+            background: linear-gradient(135deg, #E57373 0%, #FF6B9D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 700;
-            font-size: 1.7rem;
+            font-size: 1.8rem;
+            display: inline-block;
         }
 
         /* Confetti Animation */
@@ -576,6 +874,122 @@
                 height: 100px;
             }
         }
+
+        /* ===== Romantic Photo Journey ===== */
+        #journey {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            background: #000;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow: hidden;
+        }
+
+        #journey .journey-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.6s ease;
+        }
+
+        #journey .journey-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.15) 0%,
+                rgba(0,0,0,0.05) 40%,
+                rgba(0,0,0,0.45) 75%,
+                rgba(0,0,0,0.75) 100%
+            );
+            pointer-events: none;
+        }
+
+        #journey .journey-progress {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 2px;
+            pointer-events: none;
+        }
+
+        #journey .journey-accents {
+            position: absolute;
+            top: 20px;
+            left: 24px;
+            font-size: 1.4rem;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        #journey .journey-quote {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 88%;
+            max-width: 600px;
+            text-align: center;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+        }
+
+        #journey .journey-quote p {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 1.35rem;
+            color: #fff;
+            line-height: 1.8;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+        }
+
+        #journey .journey-quote .nickname {
+            background: linear-gradient(135deg, #FFB6C1, #FF6B9D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        #journey .journey-hint {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.55);
+            letter-spacing: 1px;
+            animation: pulse 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.55; }
+            50% { opacity: 1; }
+        }
+
+        @media (max-width: 480px) {
+            #journey .journey-quote p {
+                font-size: 1.1rem;
+            }
+            #journey .journey-quote {
+                bottom: 70px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -625,17 +1039,47 @@
         <div class="rose-emoji">🌹</div>
         <div class="rose-emoji">🌺</div>
         <div class="rose-emoji">🌸</div>
+        <!-- Flying Bees for "Bee" -->
+        <div class="bee">🐝</div>
+        <div class="bee">🐝</div>
+        <div class="bee">🐝</div>
+        <div class="bee">🐝</div>
+        <div class="bee">🐝</div>
+        <div class="bee">🐝</div>
+        <!-- Sparkles for "Sparky" -->
+        <div class="sparkle">✨</div>
+        <div class="sparkle">💫</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">⭐</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">💫</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">⭐</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">💫</div>
     </div>
 
-    <!-- Decorative Corner Flowers -->
-    <div class="corner-flowers top-left">🌹💐</div>
-    <div class="corner-flowers top-right">🌺🌸</div>
-    <div class="corner-flowers bottom-left">🌷🌹</div>
-    <div class="corner-flowers bottom-right">💐🌺</div>
+    <!-- Decorative Corner Flowers with Bee & Sparkle Theme -->
+    <div class="corner-flowers top-left">🐝✨</div>
+    <div class="corner-flowers top-right">💫🌹</div>
+    <div class="corner-flowers bottom-left">✨🐝</div>
+    <div class="corner-flowers bottom-right">🌸💫</div>
+
+    <!-- Romantic Photo Journey -->
+    <div id="journey">
+        <img class="journey-img" id="journeyImg" src="images/personal%20images/IMG_0548.JPEG" alt="Our journey">
+        <div class="journey-overlay"></div>
+        <div class="journey-accents">🐝 ✨</div>
+        <div class="journey-progress" id="journeyProgress">1 / 11</div>
+        <div class="journey-quote" id="journeyQuote">
+            <p>Every love story is beautiful, but ours is my favorite, <span class="nickname">Ammu</span> 💕</p>
+        </div>
+        <div class="journey-hint">tap to continue ✨</div>
+    </div>
 
     <div class="container">
         <!-- Section 1: Valentine's Question -->
-        <div id="section1" class="section active">
+        <div id="section1" class="section">
             <div class="card">
                 <h1>✿ A Special Question ✿</h1>
 
@@ -643,28 +1087,16 @@
                     "You are the bane of my existence... and the object of all my desires."
                 </div>
 
-                <!-- Puppy Eyes GIF -->
+                <!-- Proposal Image -->
                 <div class="gif-container">
-                    <img src="https://media.giphy.com/media/hFXwY4lER3oBO/giphy.gif"
-                         alt="Puppy eyes"
-                         id="mainGif">
-                </div>
-
-                <!-- Personal Photos -->
-                <div class="photo-gallery">
-                    <div class="photo-frame">
-                        <img src="images/photo1.jpg" alt="Our memory 1" onerror="this.parentElement.style.display='none'">
-                    </div>
-                    <div class="photo-frame">
-                        <img src="images/photo2.jpg" alt="Our memory 2" onerror="this.parentElement.style.display='none'">
-                    </div>
-                    <div class="photo-frame">
-                        <img src="images/photo3.jpg" alt="Our memory 3" onerror="this.parentElement.style.display='none'">
-                    </div>
+                    <img src="images/propose-day-1200-1.jpg"
+                         alt="Proposal moment"
+                         id="mainImage">
                 </div>
 
                 <p class="question">
-                    Will you be my Valentine, <span class="name-highlight">Ammu</span>?
+                    Will you be my Valentine, <span class="name-highlight">Ammu</span>? 💫<br>
+                    <small style="font-size: 0.7em; opacity: 0.8; font-style: italic;">From your Bee 🐝 to his Sparky ✨</small>
                 </p>
 
                 <div class="button-container">
@@ -695,21 +1127,9 @@
                     </video>
                 </div>
 
-                <!-- Personal Photos -->
-                <div class="photo-gallery">
-                    <div class="photo-frame">
-                        <img src="images/photo4.jpg" alt="Our memory 4" onerror="this.parentElement.style.display='none'">
-                    </div>
-                    <div class="photo-frame">
-                        <img src="images/photo5.jpg" alt="Our memory 5" onerror="this.parentElement.style.display='none'">
-                    </div>
-                    <div class="photo-frame">
-                        <img src="images/photo6.jpg" alt="Our memory 6" onerror="this.parentElement.style.display='none'">
-                    </div>
-                </div>
-
                 <p class="question">
-                    Will you marry me, <span class="name-highlight">Dhan</span>?
+                    Will you marry me, <span class="name-highlight">Dhan</span>? 💍<br>
+                    <small style="font-size: 0.7em; opacity: 0.8; font-style: italic;">Your Bee 🐝 wants to buzz with Sparky ✨ forever!</small>
                 </p>
 
                 <div class="button-container">
@@ -739,21 +1159,12 @@
 
                 <!-- Success Message -->
                 <div class="success-message">
-                    <p class="highlight">Congratulations! You're the luckiest person in the world! 🌟</p>
-                    <p>I can't wait to see you this <span class="highlight">Saturday</span>! ❤️</p>
-                    <p>Your special reward awaits you, my love... 💝</p>
-                    <p>Get ready for the most amazing day of your life! ✨</p>
+                    <p class="highlight">Congratulations Sparky! ✨ You're the luckiest person in the world! 💫</p>
+                    <p>Your Bee 🐝 can't wait to see you this <span class="highlight">Saturday</span>! ❤️</p>
+                    <p>Our special adventure awaits, my Sparky... 💝✨</p>
+                    <p>Get ready for the most amazing day! Bee & Sparky forever! 🐝💫</p>
                 </div>
 
-                <!-- Special Photos -->
-                <div class="photo-gallery">
-                    <div class="photo-frame">
-                        <img src="images/photo7.jpg" alt="Special moment 1" onerror="this.parentElement.style.display='none'">
-                    </div>
-                    <div class="photo-frame">
-                        <img src="images/photo8.jpg" alt="Special moment 2" onerror="this.parentElement.style.display='none'">
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -862,6 +1273,78 @@
                 }, i * 100);
             }
         }
+
+        // ===== Romantic Photo Journey =====
+        const journeySlides = [
+            { image: 'images/personal%20images/IMG_0548.JPEG', quote: 'Every love story is beautiful, but ours is my favorite,', nickname: 'Ammu', emoji: '💕' },
+            { image: 'images/personal%20images/IMG_1257.JPEG', quote: "You're my today and all of my tomorrows,", nickname: 'Bujju', emoji: '🐝' },
+            { image: 'images/personal%20images/Photo%2004-02-26%2C%202%2054%2022%20PM%20(1)%20(1).jpg', quote: 'In a sea of people, my eyes will always search for you,', nickname: 'Dhan Ma', emoji: '✨' },
+            { image: 'images/personal%20images/Photo%2004-02-26%2C%207%2030%2027%20PM.jpg', quote: "You stole my heart, but I'll let you keep it,", nickname: 'Dhan Baby', emoji: '💫' },
+            { image: 'images/personal%20images/Photo%2006-02-26%2C%2010%2034%2010%20AM%20(1)%20(1).jpg', quote: 'You are the sunshine that makes my day bloom,', nickname: 'My Alagiii', emoji: '🌹' },
+            { image: 'images/personal%20images/Photo%2006-02-26%2C%2010%2034%2010%20AM%20(2).jpg', quote: 'I fell in love the way you fall asleep: slowly, then all at once,', nickname: 'Ammu', emoji: '💕' },
+            { image: 'images/personal%20images/Photo%2006-02-26%2C%2010%2034%2010%20AM%20(3)%20(1).jpg', quote: "You're not just my love, you're my best friend,", nickname: 'Bujju', emoji: '🐝' },
+            { image: 'images/personal%20images/Photo%2010-02-26%2C%205%2019%2024%20PM.jpg', quote: 'Wherever you go, my heart follows,', nickname: 'Dhan Ma', emoji: '✨' },
+            { image: 'images/personal%20images/Photo%2012-02-26%2C%2010%2049%2029%20AM%20(1).jpg', quote: 'Every moment with you is a moment I treasure,', nickname: 'Dhan Baby', emoji: '💫' },
+            { image: 'images/personal%20images/Photo%2031-01-26%2C%203%2056%2031%20PM%20(1).jpg', quote: "You're the reason I believe in love,", nickname: 'My Alagiii', emoji: '🌹' },
+            { image: 'images/personal%20images/Photo%2031-01-26%2C%203%2058%2025%20PM.jpg', quote: 'This is just the beginning of our forever,', nickname: 'Ammu', emoji: '💕' }
+        ];
+
+        let currentSlide = 0;
+        let journeyTransitioning = false;
+        const journeyEl = document.getElementById('journey');
+        const journeyImg = document.getElementById('journeyImg');
+        const journeyQuote = document.getElementById('journeyQuote');
+        const journeyProgress = document.getElementById('journeyProgress');
+
+        // Preload next image
+        function preloadJourneyImage(index) {
+            if (index < journeySlides.length) {
+                const img = new Image();
+                img.src = journeySlides[index].image;
+            }
+        }
+        // Preload slide 1 (index 1) right away
+        preloadJourneyImage(1);
+
+        function updateJourneySlide(index) {
+            const slide = journeySlides[index];
+            journeyImg.src = slide.image;
+            journeyQuote.innerHTML = '<p>' + slide.quote + ' <span class="nickname">' + slide.nickname + '</span> ' + slide.emoji + '</p>';
+            journeyProgress.textContent = (index + 1) + ' / ' + journeySlides.length;
+        }
+
+        journeyEl.addEventListener('click', function() {
+            if (journeyTransitioning) return;
+            journeyTransitioning = true;
+
+            currentSlide++;
+
+            if (currentSlide >= journeySlides.length) {
+                // Fade out journey, show section 1
+                journeyEl.style.transition = 'opacity 0.8s ease';
+                journeyEl.style.opacity = '0';
+                setTimeout(function() {
+                    journeyEl.style.display = 'none';
+                    document.getElementById('section1').classList.add('active');
+                    journeyTransitioning = false;
+                }, 800);
+                return;
+            }
+
+            // Preload the one after next
+            preloadJourneyImage(currentSlide + 1);
+
+            // Crossfade
+            journeyImg.style.opacity = '0';
+            journeyQuote.style.opacity = '0';
+
+            setTimeout(function() {
+                updateJourneySlide(currentSlide);
+                journeyImg.style.opacity = '1';
+                journeyQuote.style.opacity = '1';
+                journeyTransitioning = false;
+            }, 600);
+        });
 
         // Prevent video error console warnings
         document.addEventListener('DOMContentLoaded', function() {

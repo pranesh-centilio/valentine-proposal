@@ -2,6 +2,9 @@
 
 Add your personal photos here with these exact names:
 
+Main Proposal Image (Featured in Section 1):
+✓ propose.jpg (Your special proposal/romantic image)
+
 Section 1 (Valentine's Question - "Will you be my Valentine, Ammu?"):
 ✓ photo1.jpg
 ✓ photo2.jpg
