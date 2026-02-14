@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be Mine? 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #FFE5EC 0%, #FFC6D9 50%, #FFB3C6 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Rose Background */
+        .rose-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        /* Floating Flower Petals */
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #FFB6C1 0%, #FFC0CB 50%, transparent 100%);
+            border-radius: 50% 0 50% 0;
+            opacity: 0.6;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .petal:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+        .petal:nth-child(2) { left: 25%; animation-duration: 10s; animation-delay: 2s; }
+        .petal:nth-child(3) { left: 40%; animation-duration: 12s; animation-delay: 1s; }
+        .petal:nth-child(4) { left: 55%; animation-duration: 9s; animation-delay: 3s; }
+        .petal:nth-child(5) { left: 70%; animation-duration: 11s; animation-delay: 0.5s; }
+        .petal:nth-child(6) { left: 85%; animation-duration: 10s; animation-delay: 2.5s; }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            animation: fadeIn 1s ease-in;
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Elegant Card */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow:
+                0 20px 60px rgba(212, 175, 55, 0.3),
+                inset 0 0 0 3px #D4AF37,
+                inset 0 0 0 6px rgba(255, 255, 255, 0.5);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .card::before,
+        .card::after {
+            content: '✿';
+            position: absolute;
+            font-size: 2rem;
+            color: #D4AF37;
+            opacity: 0.6;
+        }
+
+        .card::before {
+            top: 20px;
+            left: 20px;
+        }
+
+        .card::after {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #E57373;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.3);
+        }
+
+        .quote {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: #D4AF37;
+            margin: 30px 0;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .question {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #333;
+            margin: 30px 0;
+            font-weight: 600;
+        }
+
+        .name-highlight {
+            color: #E57373;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.2);
+        }
+
+        /* GIF Display */
+        .gif-container {
+            margin: 30px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .photo-frame {
+            width: 150px;
+            height: 150px;
+            border: 5px solid #FFF9C4;
+            border-radius: 15px;
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.2),
+                inset 0 0 0 2px #D4AF37;
+            overflow: hidden;
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .photo-frame:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.1) rotate(0deg);
+            z-index: 10;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Video Container */
+        .video-container {
+            margin: 30px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 4px solid #D4AF37;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Buttons */
+        .button-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            position: relative;
+            min-height: 80px;
+        }
+
+        .btn {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 150px;
+            position: relative;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #FFF9C4 0%, #FFD54F 100%);
+            color: #333;
+            border: 3px solid #D4AF37;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow:
+                0 8px 25px rgba(212, 175, 55, 0.5),
+                0 0 30px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(135deg, #FFD54F 0%, #FFF9C4 100%);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #E57373 0%, #EF5350 100%);
+            color: white;
+            border: 3px solid #C62828;
+            transition: all 0.3s ease;
+        }
+
+        .btn-no:hover {
+            transform: scale(1.05);
+        }
+
+        /* NO Button Tooltip */
+        .no-tooltip {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(229, 115, 115, 0.95);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+
+        .no-tooltip.show {
+            opacity: 1;
+        }
+
+        .no-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid rgba(229, 115, 115, 0.95);
+        }
+
+        /* Success Message */
+        .success-message {
+            background: linear-gradient(135deg, #FFF9C4 0%, #FFE5EC 100%);
+            border: 4px solid #D4AF37;
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow:
+                0 15px 40px rgba(212, 175, 55, 0.4),
+                inset 0 0 0 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .success-message p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: #333;
+            margin: 15px 0;
+        }
+
+        .success-message .highlight {
+            color: #E57373;
+            font-weight: 700;
+            font-size: 1.7rem;
+        }
+
+        /* Confetti Animation */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            animation: confettiFall 4s ease-out;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Hearts Animation */
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+            animation: heartFloat 5s ease-out;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .question {
+                font-size: 1.5rem;
+            }
+
+            .quote {
+                font-size: 1.3rem;
+            }
+
+            .card {
+                padding: 30px 20px;
+            }
+
+            .btn {
+                font-size: 1.2rem;
+                padding: 15px 40px;
+                min-width: 130px;
+            }
+
+            .photo-frame {
+                width: 120px;
+                height: 120px;
+            }
+
+            .success-message p {
+                font-size: 1.2rem;
+            }
+
+            .success-message .highlight {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .question {
+                font-size: 1.3rem;
+            }
+
+            .quote {
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                font-size: 1.1rem;
+                padding: 12px 30px;
+            }
+
+            .photo-frame {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Flower Petals Background -->
+    <div class="rose-background">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+    </div>
+
+    <div class="container">
+        <!-- Section 1: Valentine's Question -->
+        <div id="section1" class="section active">
+            <div class="card">
+                <h1>✿ A Special Question ✿</h1>
+
+                <div class="quote">
+                    "You are the bane of my existence... and the object of all my desires."
+                </div>
+
+                <!-- Puppy Eyes GIF -->
+                <div class="gif-container">
+                    <img src="https://media.giphy.com/media/hFXwY4lER3oBO/giphy.gif"
+                         alt="Puppy eyes"
+                         id="mainGif">
+                </div>
+
+                <!-- Personal Photos -->
+                <div class="photo-gallery">
+                    <div class="photo-frame">
+                        <img src="images/photo1.jpg" alt="Our memory 1" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="photo-frame">
+                        <img src="images/photo2.jpg" alt="Our memory 2" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="photo-frame">
+                        <img src="images/photo3.jpg" alt="Our memory 3" onerror="this.parentElement.style.display='none'">
+                    </div>
+                </div>
+
+                <p class="question">
+                    Will you be my Valentine, <span class="name-highlight">Ammu</span>?
+                </p>
+
+                <div class="button-container">
+                    <button class="btn btn-yes" onclick="goToSection2()">YES! 💕</button>
+                    <div style="position: relative;">
+                        <div class="no-tooltip" id="noTooltip1">You don't have any option, choose only YES 😊</div>
+                        <button class="btn btn-no" id="noBtn1">NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Marriage Proposal -->
+        <div id="section2" class="section">
+            <div class="card">
+                <h1>✿ One More Question ✿</h1>
+
+                <div class="quote">
+                    "I burn for you."
+                </div>
+
+                <!-- Pink Flower Video -->
+                <div class="video-container">
+                    <video autoplay loop muted playsinline controls poster="images/video-poster.jpg">
+                        <source src="videos/pink-flowers.mp4" type="video/mp4">
+                        <source src="videos/pink-flowers.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <!-- Personal Photos -->
+                <div class="photo-gallery">
+                    <div class="photo-frame">
+                        <img src="images/photo4.jpg" alt="Our memory 4" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="photo-frame">
+                        <img src="images/photo5.jpg" alt="Our memory 5" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="photo-frame">
+                        <img src="images/photo6.jpg" alt="Our memory 6" onerror="this.parentElement.style.display='none'">
+                    </div>
+                </div>
+
+                <p class="question">
+                    Will you marry me, <span class="name-highlight">Dhan</span>?
+                </p>
+
+                <div class="button-container">
+                    <button class="btn btn-yes" onclick="goToSuccess()">YES! 💍</button>
+                    <div style="position: relative;">
+                        <div class="no-tooltip" id="noTooltip2">You don't have any option, choose only YES 😊</div>
+                        <button class="btn btn-no" id="noBtn2">NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Success/Celebration -->
+        <div id="section3" class="section">
+            <div class="card">
+                <h1>🎉 She Said YES! 🎉</h1>
+
+                <div class="quote">
+                    "You have bewitched me, body and soul."
+                </div>
+
+                <!-- Celebration GIF -->
+                <div class="gif-container">
+                    <img src="https://media.giphy.com/media/g9582DNuQppxC/giphy.gif"
+                         alt="Celebration">
+                </div>
+
+                <!-- Success Message -->
+                <div class="success-message">
+                    <p class="highlight">Congratulations! You're the luckiest person in the world! 🌟</p>
+                    <p>I can't wait to see you this <span class="highlight">Saturday</span>! ❤️</p>
+                    <p>Your special reward awaits you, my love... 💝</p>
+                    <p>Get ready for the most amazing day of your life! ✨</p>
+                </div>
+
+                <!-- Special Photos -->
+                <div class="photo-gallery">
+                    <div class="photo-frame">
+                        <img src="images/photo7.jpg" alt="Special moment 1" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="photo-frame">
+                        <img src="images/photo8.jpg" alt="Special moment 2" onerror="this.parentElement.style.display='none'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Container (for celebration) -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <script>
+        // NO Button Escape Logic
+        function setupNoButton(btnId, tooltipId) {
+            const btn = document.getElementById(btnId);
+            const tooltip = document.getElementById(tooltipId);
+
+            function moveButton() {
+                const container = btn.parentElement.parentElement;
+                const containerRect = container.getBoundingClientRect();
+
+                const maxX = containerRect.width - btn.offsetWidth - 20;
+                const maxY = 100;
+
+                const randomX = Math.random() * maxX;
+                const randomY = Math.random() * maxY;
+
+                btn.style.position = 'absolute';
+                btn.style.left = randomX + 'px';
+                btn.style.top = randomY + 'px';
+
+                // Show tooltip
+                tooltip.classList.add('show');
+                setTimeout(() => {
+                    tooltip.classList.remove('show');
+                }, 2000);
+            }
+
+            // Desktop hover
+            btn.addEventListener('mouseenter', moveButton);
+
+            // Mobile touch
+            btn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                moveButton();
+            });
+
+            // Prevent click
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                moveButton();
+            });
+        }
+
+        // Initialize NO buttons
+        setupNoButton('noBtn1', 'noTooltip1');
+        setupNoButton('noBtn2', 'noTooltip2');
+
+        // Section Navigation
+        function goToSection2() {
+            document.getElementById('section1').classList.remove('active');
+            document.getElementById('section2').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function goToSuccess() {
+            document.getElementById('section2').classList.remove('active');
+            document.getElementById('section3').classList.add('active');
+            window.scrollTo(0, 0);
+
+            // Trigger celebration animations
+            createConfetti();
+            createHearts();
+        }
+
+        // Confetti Animation
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#FFF9C4', '#FFD54F', '#E57373', '#EF5350', '#D4AF37', '#FFB6C1'];
+
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    container.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 30);
+            }
+        }
+
+        // Hearts Animation
+        function createHearts() {
+            const container = document.getElementById('confettiContainer');
+            const heartSymbols = ['💕', '💖', '💗', '💝', '💞', '💓', '❤️', '💛'];
+
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDelay = Math.random() * 1 + 's';
+                    container.appendChild(heart);
+
+                    setTimeout(() => heart.remove(), 5000);
+                }, i * 100);
+            }
+        }
+
+        // Prevent video error console warnings
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('video');
+            if (video) {
+                video.addEventListener('error', function(e) {
+                    console.log('Video will be available after you add pink-flowers.mp4 to videos folder');
+                }, true);
+            }
+        });
+    </script>
+</body>
+</html>
