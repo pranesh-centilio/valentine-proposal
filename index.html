@@ -882,6 +882,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
+            height: 100dvh;
             z-index: 9999;
             background: #000;
             cursor: pointer;
@@ -916,7 +917,8 @@
 
         #journey .journey-progress {
             position: absolute;
-            top: 20px;
+            top: env(safe-area-inset-top, 20px);
+            padding-top: 20px;
             right: 24px;
             font-family: 'Cormorant Garamond', serif;
             font-size: 1rem;
@@ -937,7 +939,7 @@
 
         #journey .journey-quote {
             position: absolute;
-            bottom: 80px;
+            bottom: calc(80px + env(safe-area-inset-bottom, 0px));
             left: 50%;
             transform: translateX(-50%);
             width: 88%;
@@ -966,7 +968,7 @@
 
         #journey .journey-hint {
             position: absolute;
-            bottom: 24px;
+            bottom: calc(24px + env(safe-area-inset-bottom, 0px));
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Cormorant Garamond', serif;
@@ -982,12 +984,34 @@
             50% { opacity: 1; }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
             #journey .journey-quote p {
-                font-size: 1.1rem;
+                font-size: 1.15rem;
             }
             #journey .journey-quote {
-                bottom: 70px;
+                bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+            }
+            #journey .journey-hint {
+                bottom: calc(50px + env(safe-area-inset-bottom, 0px));
+            }
+            #journey .journey-progress {
+                top: env(safe-area-inset-top, 0px);
+                padding-top: 24px;
+            }
+            #journey .journey-accents {
+                top: env(safe-area-inset-top, 0px);
+                padding-top: 24px;
+            }
+        }
+        @media (max-width: 480px) {
+            #journey .journey-quote p {
+                font-size: 1.05rem;
+            }
+            #journey .journey-quote {
+                bottom: calc(110px + env(safe-area-inset-bottom, 0px));
+            }
+            #journey .journey-hint {
+                bottom: calc(60px + env(safe-area-inset-bottom, 0px));
             }
         }
     </style>
